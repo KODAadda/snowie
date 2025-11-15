@@ -1,4 +1,4 @@
-// auth.js - CODE HOÀN CHỈNH
+// auth.js - CODE NÀY CHẠY ĐƯỢC NGAY
 document.getElementById('registerForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -19,26 +19,18 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Đang gửi...';
     submitBtn.disabled = true;
     
-    // LUÔN thành công trước (không chờ response)
+    // LUÔN LƯU VÀO LOCALSTORAGE TRƯỚC
     localStorage.setItem('currentUser', JSON.stringify(userData));
     
-    // Gửi đến Google Sheets (không chặn UI)
-    const formData = `name=${encodeURIComponent(userData.name)}&email=${encodeURIComponent(userData.email)}&password=${encodeURIComponent(userData.password)}`;
+    // TẠO HÌNH ẢNH ĐỂ GỬI REQUEST (bypass CORS hoàn toàn)
+    const img = new Image();
+    const url = `https://script.google.com/macros/s/AKfycbyD3yd5d4BAAlnSG5ACShoxODaiatVI9u2UKC_LgwnHB20zJ3zx_HzKjXHdWcuafY0o/exec?name=${encodeURIComponent(userData.name)}&email=${encodeURIComponent(userData.email)}&password=${encodeURIComponent(userData.password)}&timestamp=${Date.now()}`;
     
-    // Tạo hidden iframe để gửi request (bypass CORS)
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = `https://script.google.com/macros/s/AKfycbyD3yd5d4BAAlnSG5ACShoxODaiatVI9u2UKC_LgwnHB20zJ3zx_HzKjXHdWcuafY0o/exec?${formData}`;
-    document.body.appendChild(iframe);
+    img.src = url;
     
-    // Chuyển trang sau 1 giây
+    // KHÔNG CHỜ RESPONSE - CHUYỂN TRANG LUÔN
     setTimeout(() => {
         alert('✅ Đăng ký thành công! Chào mừng ' + userData.name);
         window.location.href = 'index.html';
-    }, 1000);
-    
-    // Xóa iframe sau 5 giây
-    setTimeout(() => {
-        iframe.remove();
-    }, 5000);
+    }, 500);
 });
