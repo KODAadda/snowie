@@ -1,4 +1,4 @@
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1ASuGvrR3PwW1frWpGqV6WKnVcgT0LeBl6d5h8CCBJkPN9y27WDfO7WzbGUgTuXM/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyD3yd5d4BAAlnSG5ACShoxODaiatVI9u2UKC_LgwnHB20zJ3zx_HzKjXHdWcuafY0o/exec';
 
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -65,3 +65,4 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('❌ Không tìm thấy form đăng ký');
     }
 });
+
