@@ -1,47 +1,53 @@
-// THAY THẰNG URL CỦA BẠN VÀO ĐÂY
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyD3yd5d4BAAlnSG5ACShoxODaiatVI9u2UKC_LgwnHB20zJ3zx_HzKjXHdWcuafY0o/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1ASuGvrR3PwW1frWpGqV6WKnVcgT0LeBl6d5h8CCBJkPN9y27WDfO7WzbGUgTuXM/exec';
 
-// Xử lý form đăng ký
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const userData = {
-        name: document.getElementById('name').value.trim(),
-        email: document.getElementById('email').value.trim(),
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
         password: document.getElementById('password').value
     };
     
-    // Validate
-    if (!userData.name || !userData.email || !userData.password) {
-        alert('Vui lòng điền đầy đủ thông tin!');
-        return;
-    }
-    
-    if (userData.password.length < 6) {
-        alert('Mật khẩu phải có ít nhất 6 ký tự!');
-        return;
-    }
+    console.log('📝 Dữ liệu đăng ký:', userData);
     
     try {
         // Hiển thị loading
         const submitBtn = this.querySelector('button[type="submit"]');
-        submitBtn.textContent = 'Đang đăng ký...';
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Đang gửi...';
         submitBtn.disabled = true;
         
-        // Gửi data đến Google Sheets
-        await sendToGoogleSheets(userData);
+        // Gửi đến Google Sheets với no-cors
+        const formData = new URLSearchParams();
+        formData.append('name', userData.name);
+        formData.append('email', userData.email);
+        formData.append('password', userData.password);
         
-        // Lưu vào localStorage để đăng nhập ngay
+        console.log('🚀 Đang gửi request đến Google Sheets...');
+        
+        // Sử dụng no-cors mode
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+        
+        console.log('✅ Request đã gửi (no-cors mode)');
+        
+        // Lưu local
         localStorage.setItem('currentUser', JSON.stringify(userData));
         
         alert('✅ Đăng ký thành công! Chào mừng ' + userData.name);
         window.location.href = 'index.html';
         
     } catch (error) {
-        console.error('Lỗi đăng ký:', error);
-        alert('❌ Có lỗi xảy ra khi đăng ký. Vui lòng thử lại!');
+        console.error('❌ Lỗi:', error);
+        alert('❌ Lỗi đăng ký: ' + error.message);
     } finally {
-        // Khôi phục button
         const submitBtn = document.querySelector('button[type="submit"]');
         if (submitBtn) {
             submitBtn.textContent = 'Đăng ký';
@@ -50,37 +56,12 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     }
 });
 
-// Hàm gửi data đến Google Sheets
-async function sendToGoogleSheets(userData) {
-    const formData = new URLSearchParams();
-    formData.append('name', userData.name);
-    formData.append('email', userData.email);
-    formData.append('password', userData.password);
-    
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formData
-    });
-    
-    if (!response.ok) {
-        throw new Error('Network error');
-    }
-    
-    const result = await response.text();
-    console.log('Kết quả từ server:', result);
-    
-    return result;
-}
-
-// Kiểm tra đăng nhập khi trang load
+// Kiểm tra form có tồn tại không
 document.addEventListener('DOMContentLoaded', function() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser) {
-        // Nếu đã đăng nhập, chuyển hướng về trang chủ
-        window.location.href = 'index.html';
+    const form = document.getElementById('registerForm');
+    if (form) {
+        console.log('✅ Form đăng ký đã được tìm thấy');
+    } else {
+        console.error('❌ Không tìm thấy form đăng ký');
     }
-
 });
