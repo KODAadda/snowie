@@ -1,5 +1,5 @@
 // THAY THẰNG URL CỦA BẠN VÀO ĐÂY
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1ASuGvrR3PwW1frWpGqV6WKnVcgTOLeBi6d5h8CCBJkPN9y27WDfOrWzbGUgTuXM/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyD3yd5d4BAAlnSG5ACShoxODaiatVI9u2UKC_LgwnHB20zJ3zx_HzKjXHdWcuafY0o/exec';
 
 // Xử lý form đăng ký
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
@@ -82,4 +82,5 @@ document.addEventListener('DOMContentLoaded', function() {
         // Nếu đã đăng nhập, chuyển hướng về trang chủ
         window.location.href = 'index.html';
     }
+
 });
